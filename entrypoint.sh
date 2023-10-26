@@ -116,7 +116,7 @@ git cherry-pick $MERGE_COMMIT &> /tmp/error.log || (
 		gh pr comment $PR_NUMBER --body "🤖 says: Error cherry-picking.<br/><br/>$(cat /tmp/error.log)"
 		exit 1
 )
-
+echo "Test new action"
 # push back
 git push origindest origindest/$TARGET_BRANCH:$TARGET_BRANCH
 
