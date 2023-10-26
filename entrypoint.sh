@@ -119,7 +119,7 @@ git cherry-pick $MERGE_COMMIT &> /tmp/error.log || (
 echo "Create New PR"
 # push back
 # git push origindest origindest/$TARGET_BRANCH:$TARGET_BRANCH
-
-gh pr create --base $TARGET_BRANCH --head cherry-pick-$PR_NUMBER --title "cherry-pick-$PR_NUMBER" --body "cherry-pick-$PR_NUMBER" --token $GITHUB_TOKEN
+echo -n $GITHUB_TOKEN | gh auth login --with-token
+gh pr create --base $TARGET_BRANCH --head cherry-pick-$PR_NUMBER --title "cherry-pick-$PR_NUMBER" --body "cherry-pick-$PR_NUMBER"
 
 gh pr comment $PR_NUMBER --body "🤖 says: cherry pick action finished successfully 🎉!<br/>See: https://github.com/$REPO_NAME/actions/runs/$GITHUB_RUN_ID"
