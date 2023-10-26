@@ -118,7 +118,7 @@ git cherry-pick $MERGE_COMMIT &> /tmp/error.log || (
 )
 
 echo "Push Back"
-git push origindest origindest/cherry-pick-$PR_NUMBER:cherry-pick-$PR_NUMBER
+git push origindest origindest/cherry-pick-$PR_NUMBER
 
 echo "Create New PR"
 gh pr create --base $TARGET_BRANCH --title "cherry-pick-$PR_NUMBER" --body "cherry-pick-$PR_NUMBER"
