@@ -116,10 +116,11 @@ git cherry-pick $MERGE_COMMIT &> /tmp/error.log || (
 		gh pr comment $PR_NUMBER --body "🤖 says: Error cherry-picking.<br/><br/>$(cat /tmp/error.log)"
 		exit 1
 )
-echo "Create New PR"
-# push back
-# git push origindest origindest/$TARGET_BRANCH:$TARGET_BRANCH
 
+echo "Push Back"
+git push origindest origindest/cherry-pick-$PR_NUMBER:cherry-pick-$PR_NUMBER
+
+echo "Create New PR"
 gh pr create --base $TARGET_BRANCH --title "cherry-pick-$PR_NUMBER" --body "cherry-pick-$PR_NUMBER"
 
 gh pr comment $PR_NUMBER --body "🤖 says: cherry pick action finished successfully 🎉!<br/>See: https://github.com/$REPO_NAME/actions/runs/$GITHUB_RUN_ID"
